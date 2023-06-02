@@ -11,8 +11,17 @@ const navigation_map = new Map([
   ["/page2", 2],
 ]);
 
-function LinkTab(props: any) {
-  return <Tab component={Link} {...props} />;
+interface LinkTabProps {
+  href: string;
+  label: string;
+}
+
+function LinkTab(props: LinkTabProps) {
+  return (
+    <Link href={props.href}>
+      <Tab label={props.label} />
+    </Link>
+  );
 }
 
 function Navigation() {
@@ -28,9 +37,9 @@ function Navigation() {
   return (
     <Stack direction="row">
       <Tabs value={selected_tab} aria-label="Navigation tabs">
-        <LinkTab href="/">Home</LinkTab>
-        <LinkTab href="/page1">Page 1</LinkTab>
-        <LinkTab href="/page2">Page 2</LinkTab>
+        <LinkTab href="/" label="Home" />
+        <LinkTab href="/page1" label="Page 1" />
+        <LinkTab href="/page2" label="Page 2" />
       </Tabs>
     </Stack>
   );
